@@ -23,7 +23,7 @@
         font-size: 28px;
         font-weight: 600;
         color: #cc0055;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
 
     .btn {
@@ -33,7 +33,7 @@
         border-radius: 12px;
         cursor: pointer;
         margin: 8px;
-        transition: 0.25s;
+        transition: 0.2s;
     }
 
     .btn-main { background:#ff99c8; }
@@ -50,15 +50,15 @@
     .overlay {
         position: fixed;
         top: 0; left: 0;
-        width: 100vw; 
+        width: 100vw;
         height: 100vh;
+        background:#ffe1ee;
         display: none;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        text-align: center;
         z-index: 9999;
-        background: #ffe1ee;
+        text-align: center;
     }
 
     #errorScreen {
@@ -77,7 +77,7 @@
     #loadingBarInner {
         width:0%; height:100%;
         background:#ff4d94;
-        transition:width 0.25s linear;
+        transition:width 0.3s linear;
     }
 
     #heartShape {
@@ -86,7 +86,7 @@
         transform:rotate(-45deg);
         position:relative;
         cursor:pointer;
-        animation:beat 0.9s infinite;
+        animation:beat 0.8s infinite;
     }
     #heartShape::before,
     #heartShape::after {
@@ -102,7 +102,7 @@
     @keyframes beat {
         0% {transform:rotate(-45deg) scale(1);}
         50% {transform:rotate(-45deg) scale(1.15);}
-        100% {transform:rotate(-45deg) scale(1);}
+        100%{transform:rotate(-45deg) scale(1);}
     }
 
     .petal {
@@ -126,6 +126,7 @@
 
 <div class="container">
 
+    <!-- Q1 -->
     <div id="q1">
         <img src="cat.png" style="width:200px; border-radius:20px; margin-bottom:15px;">
         <h2>do u miss me?</h2>
@@ -134,6 +135,7 @@
         <div id="msg1" class="msg"></div>
     </div>
 
+    <!-- Q2 -->
     <div id="q2" style="display:none;">
         <h2>do u stalk my profile?</h2>
         <button class="btn btn-main" id="yes2">yes</button>
@@ -141,6 +143,7 @@
         <div id="msg2" class="msg"></div>
     </div>
 
+    <!-- Q3 -->
     <div id="q3" style="display:none;">
         <h2>who would u choose?</h2>
         <button class="btn btn-main" id="meBtn">you</button>
@@ -148,6 +151,7 @@
         <div id="msg3" class="msg"></div>
     </div>
 
+    <!-- Q5 -->
     <div id="q5" style="display:none;">
         <h2>do u think im cute?</h2>
         <button class="btn btn-main" id="yes5">yes</button>
@@ -155,6 +159,7 @@
         <div id="msg5" class="msg"></div>
     </div>
 
+    <!-- Q6 -->
     <div id="q6" style="display:none;">
         <h2>are u tired of these questions?</h2>
         <button class="btn btn-soft" id="yes6">yes</button>
@@ -162,6 +167,7 @@
         <div id="msg6" class="msg"></div>
     </div>
 
+    <!-- Q7 -->
     <div id="q7" style="display:none;">
         <h2>rate me out of 10</h2>
         <button class="btn btn-main" id="r10">10</button>
@@ -172,11 +178,7 @@
 
 </div>
 
-<div id="game2" class="overlay" style="display:none;">
-    <h2>catch me 😛</h2>
-    <button id="catchBtn" class="btn btn-main" style="position:relative;">catch me</button>
-</div>
-
+<!-- NICKNAME Q8 -->
 <div id="q8" class="overlay" style="display:none;">
     <h2>whats my nickname?</h2>
     <button id="saveMe" class="btn btn-main">bskot</button>
@@ -184,27 +186,31 @@
     <div id="msg8" class="msg"></div>
 </div>
 
+<!-- GPS -->
 <div id="gpsScreen" class="overlay" style="display:none;">
-    <p>checking your location...</p>
-    <p id="gpsText" style="margin-top:10px;"></p>
+    <p id="gpsText">checking your location...</p>
 </div>
 
+<!-- ERROR -->
 <div id="errorScreen" class="overlay" style="display:none;">
     <p>system error.</p>
     <p>reason: your answers are suspicious.</p>
 </div>
 
+<!-- HEART GAME -->
 <div id="heartGame" class="overlay" style="display:none;">
     <div id="heartShape"></div>
     <p id="heartText">tap the heart 10 times to continue</p>
 </div>
 
+<!-- LOADING -->
 <div id="loadingScreen" class="overlay" style="display:none;">
     <p>processing your results...</p>
     <div id="loadingBarOuter"><div id="loadingBarInner"></div></div>
-    <p id="loadingText" style="margin-top:10px; font-size:18px;"></p>
+    <p id="loadingText" style="margin-top:10px;"></p>
 </div>
 
+<!-- FINAL -->
 <div id="finalSweet" class="overlay" style="display:none;">
     <img src="lol.png" style="width:260px; border-radius:20px; margin-bottom:20px;">
     <p>relax you passed everything.</p>
@@ -238,17 +244,16 @@ const q6=el("q6");
 const q7=el("q7");
 const q8=el("q8");
 
-// OVERLAYS
-const errorScreen=el("errorScreen");
 const gpsScreen=el("gpsScreen");
 const gpsText=el("gpsText");
 const heartGame=el("heartGame");
 const heartText=el("heartText");
 const loadingScreen=el("loadingScreen");
 const loadingBarInner=el("loadingBarInner");
+const loadingText=el("loadingText");
 const finalSweet=el("finalSweet");
+const errorScreen=el("errorScreen");
 
-// BUTTONS
 const yes1=el("yes1"), no1=el("no1");
 const yes2=el("yes2"), no2=el("no2");
 const meBtn=el("meBtn"), foodBtn=el("foodBtn");
@@ -257,6 +262,7 @@ const yes6=el("yes6"), no6=el("no6");
 const r10=el("r10"), r9=el("r9"), r8=el("r8");
 const saveMe=el("saveMe"), savePhone=el("savePhone");
 
+// runaway no button
 function runaway(btn){
     function move(){
         btn.style.transform=`translate(${Math.random()*240-120}px,${Math.random()*180-90}px)`;
@@ -266,103 +272,52 @@ function runaway(btn){
 }
 runaway(no1);
 
-// NOTES
-const loveNotes=[
-    "ur so cute.",
-    "i miss u lowkey.",
-    "ur adorable fr.",
-    "your smile >>>",
-    "ur so pretty"
-];
-let noteInterval=setInterval(()=>{
-    const note=document.createElement("div");
-    note.innerHTML=loveNotes[Math.floor(Math.random()*loveNotes.length)];
+// messages
+yes1.onclick=()=>{ msg1.innerHTML="good."; msg1.style.opacity=1; setTimeout(()=>go(q2),900); };
+yes2.onclick=()=>{ msg2.innerHTML="i knew it."; msg2.style.opacity=1; setTimeout(()=>go(q3),900); };
+no2.onclick =()=>{ msg2.innerHTML="sure."; msg2.style.opacity=1; setTimeout(()=>go(q3),900); };
 
-    note.style.position="fixed";
-    note.style.left=Math.random()*75+"vw";
-    note.style.top=Math.random()*70+"vh";
-    note.style.background="#ffe8f3";
-    note.style.padding="10px 14px";
-    note.style.borderRadius="14px";
-    note.style.color="#b3005c";
-    note.style.zIndex="9999";
-    note.style.opacity="0";
-    note.style.transition="0.4s";
-
-    document.body.appendChild(note);
-    setTimeout(()=>note.style.opacity=1,50);
-    setTimeout(()=>note.style.opacity=0,2600);
-    setTimeout(()=>note.remove(),3300);
-},3500);
-
-// LOGIC
-yes1.onclick=()=>{ el("msg1").style.opacity=1; el("msg1").innerHTML="good."; setTimeout(()=>go(q2),900); };
-
-yes2.onclick=()=>{ el("msg2").style.opacity=1; el("msg2").innerHTML="i knew it."; setTimeout(()=>go(q3),900); };
-no2.onclick =()=>{ el("msg2").style.opacity=1; el("msg2").innerHTML="sure."; setTimeout(()=>go(q3),900); };
-
-meBtn.onclick=()=>{ el("msg3").style.opacity=1; el("msg3").innerHTML="correct."; setTimeout(()=>go(q5),900); };
-
+meBtn.onclick=()=>{ msg3.innerHTML="correct."; msg3.style.opacity=1; setTimeout(()=>go(q5),900); };
 foodBtn.onclick=()=>{
-    el("msg3").style.opacity=1;
-    el("msg3").innerHTML="food?? wow";
+    msg3.innerHTML="food ??";
+    msg3.style.opacity=1;
     errorScreen.style.display="flex";
     setTimeout(()=>errorScreen.style.display="none",1500);
-    setTimeout(()=>go(q5),1700);
+    setTimeout(()=>go(q5),1600);
 };
 
-yes5.onclick=()=>{ el("msg5").innerHTML="good."; el("msg5").style.opacity=1; setTimeout(()=>go(q6),900); };
+yes5.onclick=()=>{ msg5.innerHTML="good."; msg5.style.opacity=1; setTimeout(()=>go(q6),900); };
 idk5.onclick=()=>{
-    el("msg5").innerHTML="wrong.";
+    msg5.innerHTML="wrong.";
+    msg5.style.opacity=1;
     errorScreen.style.display="flex";
-    setTimeout(()=>errorScreen.style.display="none",1600);
-    setTimeout(()=>go(q6),1700);
+    setTimeout(()=>errorScreen.style.display="none",1500);
+    setTimeout(()=>go(q6),1600);
 };
 
-yes6.onclick=()=>{ el("msg6").innerHTML="ok."; el("msg6").style.opacity=1; setTimeout(()=>go(q7),900); };
-no6.onclick =()=>{ el("msg6").innerHTML="too bad."; el("msg6").style.opacity=1; setTimeout(()=>go(q7),900); };
+yes6.onclick=()=>{ msg6.innerHTML="ok."; msg6.style.opacity=1; setTimeout(()=>go(q7),900); };
+no6.onclick =()=>{ msg6.innerHTML="too bad."; msg6.style.opacity=1; setTimeout(()=>go(q7),900); };
 
-function showGame2(){
-    q7.style.display="none";
-    game2.style.display="flex";
-}
+r10.onclick=()=>{ msg7.innerHTML="correct."; msg7.style.opacity=1; setTimeout(()=>go(q8),1000); };
+r9.onclick =()=>{ errorScreen.style.display="flex"; setTimeout(()=>errorScreen.style.display="none",1500); setTimeout(()=>go(q8),1800); };
+r8.onclick =()=>{ errorScreen.style.display="flex"; setTimeout(()=>errorScreen.style.display="none",1500); setTimeout(()=>go(q8),1800); };
 
-const game2=el("game2");
-const catchBtn=el("catchBtn");
+// nickname
+saveMe.onclick=()=>{ msg8.innerHTML="good."; msg8.style.opacity=1; setTimeout(()=>showGPS(),900); };
+savePhone.onclick=()=>{ msg8.innerHTML="wow."; msg8.style.opacity=1; errorScreen.style.display="flex"; setTimeout(()=>errorScreen.style.display="none",1500); setTimeout(()=>showGPS(),1700); };
 
-catchBtn.onmouseover=()=>{
-    catchBtn.style.left=Math.random()*200-100+"px";
-    catchBtn.style.top=Math.random()*200-100+"px";
-};
-
-catchBtn.onclick=()=>{
-    game2.style.display="none";
-    go(q8);
-};
-
-r10.onclick=()=>{ showGame2(); };
-r9.onclick =()=>{ errorScreen.style.display="flex"; setTimeout(()=>{errorScreen.style.display="none"; showGame2();},1500); };
-r8.onclick =()=>{ errorScreen.style.display="flex"; setTimeout(()=>{errorScreen.style.display="none"; showGame2();},1500); };
-
-saveMe.onclick=()=>{ setTimeout(()=>showGPS(),500); };
-savePhone.onclick=()=>{ errorScreen.style.display="flex"; setTimeout(()=>errorScreen.style.display="none",1500); setTimeout(()=>showGPS(),1700); };
-
+// GPS
 function showGPS(){
-    clearInterval(noteInterval);
     gpsScreen.style.display="flex";
     gpsText.innerHTML="locating...";
-
-    setTimeout(()=>gpsText.innerHTML="you are kinda far...",1000);
-    setTimeout(()=>gpsText.innerHTML="come closer maybe?",2000);
-
-    setTimeout(()=>{
-        gpsScreen.style.display="none";
-        showHeartGame();
-    },3200);
+    setTimeout(()=>gpsText.innerHTML="you are kinda far...",1200);
+    setTimeout(()=>gpsText.innerHTML="getting closer recommended...",2300);
+    setTimeout(()=>{ gpsScreen.style.display="none"; showHeart(); },3500);
 }
 
+// heart game
 let taps=0;
-function showHeartGame(){
+function showHeart(){
     taps=0;
     heartText.innerHTML="tap the heart 10 times";
     heartGame.style.display="flex";
@@ -373,31 +328,31 @@ heartShape.onclick=()=>{
     heartText.innerHTML=`taps: ${taps} / 10`;
     if(taps>=10){
         heartGame.style.display="none";
-        startLoading();
+        loading();
     }
 };
 
-function startLoading(){
+// loading
+function loading(){
     loadingScreen.style.display="flex";
     let p=0;
     const texts=["checking answers...","calculating iq...","analyzing loyalty...","almost done..."];
 
-    let load=setInterval(()=>{
+    let int=setInterval(()=>{
         p+=10;
         loadingBarInner.style.width=p+"%";
         loadingText.innerHTML=texts[Math.floor(p/25)] || texts[3];
-
         if(p>=100){
-            clearInterval(load);
+            clearInterval(int);
             setTimeout(()=>{
                 loadingScreen.style.display="none";
                 finalSweet.style.display="flex";
-            },600);
+            },500);
         }
     },300);
 }
 
-// PETALS
+// petals
 for(let i=0;i<35;i++){
     let p=document.createElement("div");
     p.className="petal";
@@ -406,8 +361,9 @@ for(let i=0;i<35;i++){
     document.body.appendChild(p);
 }
 
-}); // end DOMContentLoaded
+}); // DOMContentLoaded
 </script>
 
 </body>
 </html>
+
